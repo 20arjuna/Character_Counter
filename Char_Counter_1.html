@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Arjun's Char Counter </title>
+	<style> 
+		body {background-color: black;}
+		h1 {color: white;}
+		
+	</style>
+
+	<script type = "text/javascript" > 
+	function displayOutput()
+{
+	var input = document.getElementById("input").value;
+	if (input == "")
+	{
+		alert("Please insert some text");
+	}
+	else
+	{
+		input = input.toLowerCase();
+		var letters = new Array(input.length);
+		var ascii = new Array(input.length);
+		var nums = new Array(26);
+		var x = 97;
+		for (var i = 0; i < nums.length; i++)
+		{
+			nums[i] = x;
+			x++;
+		}
+		for (var i = 0; i < input.length; i++)
+		{
+			letters[i] = input.charAt(i);
+			ascii[i] = input.charCodeAt(i);
+		}
+		var answerValue = "";
+		var noShowValue = '';
+		for (var i = 0; i < nums.length; i++)
+		{
+			var count = 0;
+			var answer = '';
+			var noShow = '';
+			for (var z = 0; z < ascii.length; z++)
+			{
+				if (ascii[z] == nums[i])
+				{
+					answer = letters[z];
+					count++;
+				}
+				else
+				{
+					noShow = String.fromCharCode(nums[i]);
+				}
+			}
+			if (count > 0)
+			{
+				answerValue += answer + " appears " + count + " times! " + "\n";
+			}
+			else if (count == 0)
+			{
+				noShowValue += noShow + " doesn't appear! " + "\n";
+			}
+			document.getElementById("output").innerHTML = answerValue + "\n\n" + noShowValue;
+			//displayBox.value = answer + " appears " + count;
+		}
+		if (answerValue == '')
+		{
+			document.getElementById("output").innerHTML = "No letters appear!";
+		}
+	}
+}
+
+function reset()
+{
+	document.getElementById("input").reset();
+} 
+</script>                                                                                           
+</head>
+
+<body>
+	<h1>Insert a string </h1>
+<form id = "myForm">
+	<input type ="text" id="input">
+	<input type ="button" value="process" onclick = "displayOutput()">
+	<input type ="button" value ="reset" onclick = "reset()">
+
+</form>
+<br>
+<textarea rows="30" cols="18.75" id ="output"></textarea>
+
+</body>
+</html>
